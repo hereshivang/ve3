@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: rgb(41, 38, 38);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            background: #fff;
+            color: rgb(49, 49, 137);
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: rgb(0, 0, 244);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .logout-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .logout-btn {
+            background: #fff;
+            color: rgb(49, 49, 137);
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #d9534f;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-container">
+        <form action="/logout" method="POST">
+            <button class="logout-btn">Logout</button>
+        </form>
+    </div>
+    
+    <h1>Welcome to Your Dashboard</h1>
+    <p>Manage your tasks effortlessly.</p>
+
+    <div class="btn-container">
+        <a href="/tasks" class="btn">Get All Tasks</a>
+        <a href="/tasks" class="btn">Create Task</a>
+    </div>
+</body>
+</html>
