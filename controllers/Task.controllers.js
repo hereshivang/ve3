@@ -28,6 +28,7 @@ export const createTask = async (req, res) => {
   try {
     const newTask = new Task({ title, description });
     await newTask.save();
+    console.log("Saved");
     res.redirect('/tasks');
   } catch (error) {
     res.status(500).send('Failed to create task');
