@@ -54,8 +54,8 @@ app.post("/logout", (req, res) => {
   res.redirect("/");
 });
 
-// Tasks Routes
-app.get('/tasks', async (req, res) => {
+// task routes
+app.get('/tasks', authenticate, async (req, res) => {
   try {
     const tasks = await Task.find();
     res.render('tasks/tasks', { tasks });
@@ -65,11 +65,7 @@ app.get('/tasks', async (req, res) => {
   }
 });
 
-app.get('/tasks/create', (req, res) => {
-  res.render('tasks/create');
-});
-
-app.get('/tasks/:id', async (req, res) => {
+app.get('/tasks/:id', authenticate, async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
     if (!task) return res.status(404).send('Task not found');
@@ -79,7 +75,11 @@ app.get('/tasks/:id', async (req, res) => {
   }
 });
 
-app.get('/tasks/:id/edit', async (req, res) => {
+app.get('/tasks/create', authenticate, (req, res) => {
+  res.render('tasks/create');
+});
+
+app.get('/tasks/:id/edit', authenticate, async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
     if (!task) return res.status(404).send('Task not found');
@@ -88,6 +88,7 @@ app.get('/tasks/:id/edit', async (req, res) => {
     res.status(500).send('Error fetching task');
   }
 });
+
 
 // Port Listening
 app.listen(process.env.PORT || 8000, () => {

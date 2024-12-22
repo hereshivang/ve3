@@ -5,9 +5,7 @@ export const authenticate = (req, res, next) => {
   const token = req.header("Authorization")?.split(" ")[1] || req.cookies.token;
 
   if (!token) {
-    return res
-      .status(401)
-      .render("Login", { message: "Access denied, no token provided" });
+    return res.status(401).render("error");
   }
 
   try {
@@ -15,6 +13,6 @@ export const authenticate = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
-    res.status(401).render("Login", { message: "Invalid token" });
+    return res.status(401).render("error");
   }
 };
